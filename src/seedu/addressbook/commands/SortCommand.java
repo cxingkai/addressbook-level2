@@ -1,6 +1,7 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.Person;
+import seedu.addressbook.data.person.UniquePersonList;
 
 import java.util.*;
 
@@ -18,14 +19,14 @@ public class SortCommand extends Command{
 
     @Override
     public CommandResult execute() {
-        List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
+        List<Person> allPersons = addressBook.getAllPersons().mutableListView();
         Collections.sort(allPersons, new SortByName());
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
     }
 }
 
-class SortByName implements Comparator<ReadOnlyPerson>{
-    public int compare(ReadOnlyPerson personA, ReadOnlyPerson personB){
+class SortByName implements Comparator<Person>{
+    public int compare(Person personA, Person personB){
         return personA.getName().toString().compareTo(personB.getName().toString());
     }
 }
