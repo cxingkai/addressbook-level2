@@ -11,6 +11,11 @@ public class Contact {
         this.isPrivate = isPrivate;
     }
 
+    /**
+     * Validates value given a regex
+     *
+     * @throws IllegalValueException if value is invalid.
+     */
     public void checkValid(String regex, String message) throws IllegalValueException{
         if (!value.matches(regex)){
             throw new IllegalValueException(message);
